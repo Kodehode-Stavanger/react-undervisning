@@ -19,10 +19,9 @@ function CountryList() {
   }
 
   function handleDeleteCountry(deleteIndex) {
-    console.log("Hey!");
-    /* setCountries((prevData) =>
+    setCountries((prevData) =>
       prevData.filter((_, index) => index !== deleteIndex)
-    ); */
+    );
   }
 
   function handleNameChange(e) {
@@ -42,11 +41,9 @@ function CountryList() {
       <h2>List of countries</h2>
       <ul>
         {countries.map((country, index) => (
-          <Country
-            key={index}
-            data={country}
-            onClick={handleDeleteCountry}
-          ></Country>
+          <div onClick={() => handleDeleteCountry(index)} key={index}>
+            <Country data={country}></Country>
+          </div>
         ))}
       </ul>
       <input
