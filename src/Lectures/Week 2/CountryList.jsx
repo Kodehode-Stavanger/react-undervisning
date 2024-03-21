@@ -1,5 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Country from "./Country";
+
+export const Context = React.createContext();
+
 function CountryList() {
   const [countries, setCountries] = useState([]);
   const [countryName, setCountryName] = useState("");
@@ -37,36 +40,38 @@ function CountryList() {
   }
 
   return (
-    <div>
-      <h2>List of countries</h2>
-      <ul>
-        {countries.map((country, index) => (
-          <Country key={index} data={country} />
-        ))}
-      </ul>
-      <input
-        type="text"
-        value={countryName}
-        onChange={handleNameChange}
-        placeholder="Enter country name.."
-      />
-      <br />
-      <input
-        type="text"
-        value={countryCapital}
-        onChange={handleCapitalChange}
-        placeholder="Enter capital name.."
-      />
-      <br />
-      <input
-        type="text"
-        value={countryContinent}
-        onChange={handleContinentChange}
-        placeholder="Enter continent name.."
-      />
-      <br />
-      <button onClick={handleAddCountry}>Add country</button>
-    </div>
+    <Context.Provider value={[countries, setCountries]}>
+      <div>
+        <h2>List of countries</h2>
+        <ul>
+          {countries.map((country, index) => (
+            <Country key={index} data={country} id={index} />
+          ))}
+        </ul>
+        <input
+          type="text"
+          value={countryName}
+          onChange={handleNameChange}
+          placeholder="Enter country name.."
+        />
+        <br />
+        <input
+          type="text"
+          value={countryCapital}
+          onChange={handleCapitalChange}
+          placeholder="Enter capital name.."
+        />
+        <br />
+        <input
+          type="text"
+          value={countryContinent}
+          onChange={handleContinentChange}
+          placeholder="Enter continent name.."
+        />
+        <br />
+        <button onClick={handleAddCountry}>Add country</button>
+      </div>
+    </Context.Provider>
   );
 }
 export default CountryList;

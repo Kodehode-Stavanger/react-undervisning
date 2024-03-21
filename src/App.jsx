@@ -1,7 +1,5 @@
+import CountryList from "./CountryList";
+
 export default function App() {
-  return (
-    <>
-      <h1>Hei</h1>
-    </>
-  );
+  return <CountryList></CountryList>;
 }
