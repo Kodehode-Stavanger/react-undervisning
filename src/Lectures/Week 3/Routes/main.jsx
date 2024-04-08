@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import HomePage from "./pages/HomePage";
-import BookListPage from "./pages/BookListPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import BookPage from "./pages/BookPage";
+import HomePage from "./pages/HomePage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
+import ProfilesPage from "./pages/ProfilesPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// npm install react-router-dom
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,12 +14,14 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
   },
   {
-    path: "/books",
-    element: <BookListPage />,
-  },
-  {
-    path: "/books/:bookId",
-    element: <BookPage />,
+    path: "/profiles",
+    element: <ProfilesPage />,
+    children: [
+      {
+        path: "/profiles/:profileId",
+        element: <ProfilePage />,
+      },
+    ],
   },
 ]);
 
