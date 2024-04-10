@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    errorElement: <NotFoundPage />,
+    errorElement: <NotFoundPage msg="404! This page doesn't exist 🤔" />,
   },
   {
     path: "/books",

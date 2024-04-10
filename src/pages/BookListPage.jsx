@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import BookList from "../components/BookList";
 import NotFoundPage from "./NotFoundPage";
+import Spinner from "../components/Spinner";
 
 export default function BookListPage() {
   const [data, setData] = useState();
@@ -11,7 +12,7 @@ export default function BookListPage() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const result = await axios("https://gutendex.com/boo");
+        const result = await axios(import.meta.env.VITE_API_URL);
         setData(result.data.results);
         setIsLoading(false);
       } catch (e) {
@@ -21,8 +22,8 @@ export default function BookListPage() {
     fetchData();
   }, []);
 
-  if (error) return <NotFoundPage />;
-  if (isLoading) return <h1>LOADING..</h1>;
+  if (error) return <NotFoundPage msg={error} />;
+  if (isLoading) return <Spinner type="spokes" color="black" />;
 
   return (
     <>
